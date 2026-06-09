@@ -81,7 +81,7 @@ public class BookService {
         book.setGenreCode(req.getGenreCode());
         book.setContent(req.getContent());
         book.setCoverImageUrl(req.getCoverImageUrl());
-        book.setLiked(req.isLiked());
+        book.setLiked(Boolean.TRUE.equals(req.getIsLiked()));
         book.setCreatedAt(req.getCreatedAt());
         book.setUpdatedAt(req.getUpdatedAt());
         return new BookResponse(bookRepository.save(book));
