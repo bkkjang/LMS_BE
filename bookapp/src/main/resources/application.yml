@@ -1,23 +1,18 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: bookapp
-
   datasource:
-    url: jdbc:h2:mem:bookdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-
+    url: jdbc:mysql://localhost:3306/bookdb
+    username: root
+    password: Wkdqhdrud2@
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
-
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
-server:
-  port: 8080
+    properties:
+      hibernate:
+        format_sql: true
