@@ -17,7 +17,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    // GET /books
     @GetMapping
     public List<Book> getBooks(
             @RequestParam(required = false) String title_like,
@@ -27,36 +26,28 @@ public class BookController {
             @RequestParam(required = false, defaultValue = "createdAt") String _sort,
             @RequestParam(required = false, defaultValue = "desc") String _order
     ) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        return bookService.getBooks(title_like, genreCode, genreCode_like, isLiked, _sort, _order);
     }
 
-    // GET /books/{id}
     @GetMapping("/{id}")
     public Book getBook(@PathVariable Long id) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        return bookService.getBook(id);
     }
 
-    // POST /books
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book createBook(@Valid @RequestBody Book book) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+        return bookService.createBook(book);
     }
 
-    // PATCH /books/{id}
     @PatchMapping("/{id}")
     public Book updateBook(@PathVariable Long id, @RequestBody Map<String, Object> fields) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+        return bookService.updateBook(id, fields);
     }
 
-    // DELETE /books/{id}
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Long id) {
-        // TODO: 2일차 미션 4 구현
+        bookService.deleteBook(id);
     }
 }

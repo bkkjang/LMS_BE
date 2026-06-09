@@ -1,11 +1,13 @@
 package com.aivle.bookapp.service;
 
 import com.aivle.bookapp.entity.Book;
+import com.aivle.bookapp.exception.BookNotFoundException;
 import com.aivle.bookapp.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,30 +20,79 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<Book> getBooks(String titleLike, String genreCode, String genreCodeLike,
                                Boolean isLiked, String sort, String order) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        List<Book> books;
+        boolean liked = Boolean.TRUE.equals(isLiked);
+
+        if (titleLike != null && genreCode != null) {
+            books = liked
+                    ? bookRepository.findByTitleContainingAndGenreCodeAndIsLikedTrue(titleLike, genreCode)
+                    : bookRepository.findByTitleContainingAndGenreCode(titleLike, genreCode);
+        } else if (titleLike != null && genreCodeLike != null) {
+            books = liked
+                    ? bookRepository.findByTitleContainingAndGenreCodeStartingWithAndIsLikedTrue(titleLike, genreCodeLike)
+                    : bookRepository.findByTitleContainingAndGenreCodeStartingWith(titleLike, genreCodeLike);
+        } else if (titleLike != null) {
+            books = liked
+                    ? bookRepository.findByTitleContainingAndIsLikedTrue(titleLike)
+                    : bookRepository.findByTitleContaining(titleLike);
+        } else if (genreCode != null) {
+            books = liked
+                    ? bookRepository.findByGenreCodeAndIsLikedTrue(genreCode)
+                    : bookRepository.findByGenreCode(genreCode);
+        } else if (genreCodeLike != null) {
+            books = liked
+                    ? bookRepository.findByGenreCodeStartingWithAndIsLikedTrue(genreCodeLike)
+                    : bookRepository.findByGenreCodeStartingWith(genreCodeLike);
+        } else if (liked) {
+            books = bookRepository.findByIsLikedTrue();
+        } else {
+            books = bookRepository.findAll();
+        }
+
+        return sortBooks(books, sort, order);
+    }
+
+    private List<Book> sortBooks(List<Book> books, String sort, String order) {
+        Comparator<Book> comparator = switch (sort != null ? sort : "createdAt") {
+            case "title"     -> Comparator.comparing(Book::getTitle, Comparator.nullsLast(Comparator.naturalOrder()));
+            case "author"    -> Comparator.comparing(Book::getAuthor, Comparator.nullsLast(Comparator.naturalOrder()));
+            case "updatedAt" -> Comparator.comparing(Book::getUpdatedAt, Comparator.nullsLast(Comparator.naturalOrder()));
+            default          -> Comparator.comparing(Book::getCreatedAt, Comparator.nullsLast(Comparator.naturalOrder()));
+        };
+        if ("desc".equalsIgnoreCase(order)) comparator = comparator.reversed();
+        return books.stream().sorted(comparator).toList();
     }
 
     @Transactional(readOnly = true)
     public Book getBook(Long id) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
     }
 
     @Transactional
     public Book createBook(Book book) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+        return bookRepository.save(book);
     }
 
     @Transactional
     public Book updateBook(Long id, Map<String, Object> fields) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+
+        if (fields.containsKey("title"))        book.setTitle((String) fields.get("title"));
+        if (fields.containsKey("author"))       book.setAuthor((String) fields.get("author"));
+        if (fields.containsKey("genreCode"))    book.setGenreCode((String) fields.get("genreCode"));
+        if (fields.containsKey("content"))      book.setContent((String) fields.get("content"));
+        if (fields.containsKey("coverImageUrl")) book.setCoverImageUrl((String) fields.get("coverImageUrl"));
+        if (fields.containsKey("isLiked"))      book.setLiked((Boolean) fields.get("isLiked"));
+        if (fields.containsKey("updatedAt"))    book.setUpdatedAt((String) fields.get("updatedAt"));
+
+        return bookRepository.save(book);
     }
 
     @Transactional
     public void deleteBook(Long id) {
-        // TODO: 2일차 미션 4 구현
+        if (!bookRepository.existsById(id)) throw new BookNotFoundException(id);
+        bookRepository.deleteById(id);
     }
 }

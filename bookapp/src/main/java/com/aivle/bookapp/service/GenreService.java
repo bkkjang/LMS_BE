@@ -16,7 +16,8 @@ public class GenreService {
 
     @Transactional(readOnly = true)
     public List<Genre> getGenres(String parentCode) {
-        // TODO: 구현
-        return null;
+        if (parentCode == null) return genreRepository.findAll();
+        if ("null".equalsIgnoreCase(parentCode)) return genreRepository.findByParentCodeIsNull();
+        return genreRepository.findByParentCode(parentCode);
     }
 }
