@@ -22,6 +22,4 @@ public class BookCreateRequest {
 
     private String coverImageUrl = "";
     private Boolean isLiked = false;
-    private String createdAt;
-    private String updatedAt;
 }

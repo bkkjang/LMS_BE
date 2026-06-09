@@ -12,14 +12,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BookNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> handleNotFound(BookNotFoundException e) {
-        // TODO: 3일차 미션 5 구현
-        return null;
+        return Map.of("message", e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleValidation(MethodArgumentNotValidException e) {
-        // TODO: 3일차 미션 5 구현
-        return null;
+        String message = e.getBindingResult().getFieldErrors().stream()
+                .map(err -> err.getField() + ": " + err.getDefaultMessage())
+                .findFirst()
+                .orElse("유효성 검사 실패");
+        return Map.of("message", message);
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, String> handleException(Exception e) {
+        return Map.of("message", e.getMessage() != null ? e.getMessage() : "서버 오류가 발생했습니다.");
     }
 }

@@ -7,10 +7,10 @@ import com.aivle.bookapp.entity.Book;
 import com.aivle.bookapp.exception.BookNotFoundException;
 import com.aivle.bookapp.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -22,49 +22,49 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookResponse> getBooks(String titleLike, String genreCode, String genreCodeLike,
                                        Boolean isLiked, String sort, String order) {
-        List<Book> books;
+        Sort s = buildSort(sort, order);
         boolean liked = Boolean.TRUE.equals(isLiked);
+        List<Book> books;
 
         if (titleLike != null && genreCode != null) {
             books = liked
-                    ? bookRepository.findByTitleContainingAndGenreCodeAndIsLikedTrue(titleLike, genreCode)
-                    : bookRepository.findByTitleContainingAndGenreCode(titleLike, genreCode);
+                    ? bookRepository.findByTitleContainingAndGenreCodeAndIsLikedTrue(titleLike, genreCode, s)
+                    : bookRepository.findByTitleContainingAndGenreCode(titleLike, genreCode, s);
         } else if (titleLike != null && genreCodeLike != null) {
             books = liked
-                    ? bookRepository.findByTitleContainingAndGenreCodeStartingWithAndIsLikedTrue(titleLike, genreCodeLike)
-                    : bookRepository.findByTitleContainingAndGenreCodeStartingWith(titleLike, genreCodeLike);
+                    ? bookRepository.findByTitleContainingAndGenreCodeStartingWithAndIsLikedTrue(titleLike, genreCodeLike, s)
+                    : bookRepository.findByTitleContainingAndGenreCodeStartingWith(titleLike, genreCodeLike, s);
         } else if (titleLike != null) {
             books = liked
-                    ? bookRepository.findByTitleContainingAndIsLikedTrue(titleLike)
-                    : bookRepository.findByTitleContaining(titleLike);
+                    ? bookRepository.findByTitleContainingAndIsLikedTrue(titleLike, s)
+                    : bookRepository.findByTitleContaining(titleLike, s);
         } else if (genreCode != null) {
             books = liked
-                    ? bookRepository.findByGenreCodeAndIsLikedTrue(genreCode)
-                    : bookRepository.findByGenreCode(genreCode);
+                    ? bookRepository.findByGenreCodeAndIsLikedTrue(genreCode, s)
+                    : bookRepository.findByGenreCode(genreCode, s);
         } else if (genreCodeLike != null) {
             books = liked
-                    ? bookRepository.findByGenreCodeStartingWithAndIsLikedTrue(genreCodeLike)
-                    : bookRepository.findByGenreCodeStartingWith(genreCodeLike);
+                    ? bookRepository.findByGenreCodeStartingWithAndIsLikedTrue(genreCodeLike, s)
+                    : bookRepository.findByGenreCodeStartingWith(genreCodeLike, s);
         } else if (liked) {
-            books = bookRepository.findByIsLikedTrue();
+            books = bookRepository.findByIsLikedTrue(s);
         } else {
-            books = bookRepository.findAll();
+            books = bookRepository.findAll(s);
         }
 
-        return sortBooks(books, sort, order).stream()
-                .map(BookResponse::new)
-                .toList();
+        return books.stream().map(BookResponse::new).toList();
     }
 
-    private List<Book> sortBooks(List<Book> books, String sort, String order) {
-        Comparator<Book> comparator = switch (sort != null ? sort : "createdAt") {
-            case "title"     -> Comparator.comparing(Book::getTitle, Comparator.nullsLast(Comparator.naturalOrder()));
-            case "author"    -> Comparator.comparing(Book::getAuthor, Comparator.nullsLast(Comparator.naturalOrder()));
-            case "updatedAt" -> Comparator.comparing(Book::getUpdatedAt, Comparator.nullsLast(Comparator.naturalOrder()));
-            default          -> Comparator.comparing(Book::getCreatedAt, Comparator.nullsLast(Comparator.naturalOrder()));
+    private Sort buildSort(String sort, String order) {
+        String field = switch (sort != null ? sort : "createdAt") {
+            case "title"     -> "title";
+            case "author"    -> "author";
+            case "updatedAt" -> "updatedAt";
+            default          -> "createdAt";
         };
-        if ("desc".equalsIgnoreCase(order)) comparator = comparator.reversed();
-        return books.stream().sorted(comparator).toList();
+        Sort.Direction direction = "desc".equalsIgnoreCase(order)
+                ? Sort.Direction.DESC : Sort.Direction.ASC;
+        return Sort.by(direction, field);
     }
 
     @Transactional(readOnly = true)
@@ -82,8 +82,6 @@ public class BookService {
         book.setContent(req.getContent());
         book.setCoverImageUrl(req.getCoverImageUrl());
         book.setLiked(Boolean.TRUE.equals(req.getIsLiked()));
-        book.setCreatedAt(req.getCreatedAt());
-        book.setUpdatedAt(req.getUpdatedAt());
         return new BookResponse(bookRepository.save(book));
     }
 
@@ -92,14 +90,21 @@ public class BookService {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
 
-        if (req.getTitle()        != null) book.setTitle(req.getTitle());
-        if (req.getAuthor()       != null) book.setAuthor(req.getAuthor());
-        if (req.getGenreCode()    != null) book.setGenreCode(req.getGenreCode());
-        if (req.getContent()      != null) book.setContent(req.getContent());
-        if (req.getCoverImageUrl()!= null) book.setCoverImageUrl(req.getCoverImageUrl());
-        if (req.getIsLiked()      != null) book.setLiked(req.getIsLiked());
-        if (req.getUpdatedAt()    != null) book.setUpdatedAt(req.getUpdatedAt());
+        if (req.getTitle()         != null) book.setTitle(req.getTitle());
+        if (req.getAuthor()        != null) book.setAuthor(req.getAuthor());
+        if (req.getGenreCode()     != null) book.setGenreCode(req.getGenreCode());
+        if (req.getContent()       != null) book.setContent(req.getContent());
+        if (req.getCoverImageUrl() != null) book.setCoverImageUrl(req.getCoverImageUrl());
+        if (req.getIsLiked()       != null) book.setLiked(req.getIsLiked());
 
+        return new BookResponse(bookRepository.save(book));
+    }
+
+    @Transactional
+    public BookResponse toggleLike(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+        book.setLiked(!book.isLiked());
         return new BookResponse(bookRepository.save(book));
     }
 

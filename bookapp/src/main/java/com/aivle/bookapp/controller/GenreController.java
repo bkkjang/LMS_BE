@@ -19,7 +19,6 @@ public class GenreController {
     // GET /genres?parentCode=NV
     @GetMapping
     public List<Genre> getGenres(@RequestParam(required = false) String parentCode) {
-        // TODO: 구현
-        return null;
+        return genreService.getGenres(parentCode);
     }
 }

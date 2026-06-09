@@ -13,5 +13,4 @@ public class BookUpdateRequest {
     private String content;
     private String coverImageUrl;
     private Boolean isLiked;
-    private String updatedAt;
 }

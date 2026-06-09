@@ -46,6 +46,11 @@ public class BookController {
         return bookService.updateBook(id, req);
     }
 
+    @PatchMapping("/{id}/like")
+    public BookResponse toggleLike(@PathVariable Long id) {
+        return bookService.toggleLike(id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Long id) {
