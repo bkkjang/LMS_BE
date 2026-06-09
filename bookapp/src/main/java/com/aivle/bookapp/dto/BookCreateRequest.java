@@ -1,5 +1,6 @@
 package com.aivle.bookapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class BookCreateRequest {
     private String content;
 
     private String coverImageUrl = "";
+
+    @JsonProperty("isLiked")
     private boolean isLiked = false;
     private String createdAt;
     private String updatedAt;

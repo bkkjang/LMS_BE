@@ -1,6 +1,7 @@
 package com.aivle.bookapp.dto;
 
 import com.aivle.bookapp.entity.Book;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
@@ -12,6 +13,7 @@ public class BookResponse {
     private final String genreCode;
     private final String content;
     private final String coverImageUrl;
+    @JsonProperty("isLiked")
     private final boolean isLiked;
     private final String createdAt;
     private final String updatedAt;
