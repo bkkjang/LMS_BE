@@ -34,8 +34,7 @@ public class BookController {
     // GET /books/{id}
     @GetMapping("/{id}")
     public Book getBook(@PathVariable Long id) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        return bookService.getBook(id);
     }
 
     // POST /books
