@@ -18,13 +18,17 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-h2console'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	// Swagger UI / OpenAPI 문서 자동 생성기. @RestController 들을 스캔해 API 문서·테스트 화면을 만들어 줌.
+	//  ※ Spring Boot 4(=Jackson 3)와 호환되는 건 springdoc '3.x' 라인. (2.x는 Boot 3용이라 안 맞음)
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.3'
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
+	// 운영/개발 실행은 PostgreSQL (운영과 동일한 DB로 개발해야 'DB마다 다른 동작' 사고를 막음)
 	runtimeOnly 'org.postgresql:postgresql'
+	// H2 는 '테스트 전용'. 테스트는 빠르고 격리돼야 하므로 가벼운 인메모리 DB를 씀. 운영 코드엔 안 들어감.
+	testRuntimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
