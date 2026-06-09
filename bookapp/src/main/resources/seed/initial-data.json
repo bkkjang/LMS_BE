@@ -1,0 +1,877 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "첫눈이 내리던 날",
+      "author": "이수민",
+      "content": "서울 종로의 작은 카페에서 우연히 만난 두 사람. 엇갈린 시간과 감정을 교차 서술로 풀어낸 현대 로맨스.",
+      "genreCode": "NV-01",
+      "coverImageUrl": "/covers/1.png",
+      "isLiked": false,
+      "createdAt": "2026-05-01T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:38:34.991Z"
+    },
+    {
+      "id": 2,
+      "title": "별빛 아래의 서점",
+      "author": "홍길동",
+      "content": "폐업을 앞둔 낡은 서점과 그것을 살리려는 청년의 1년. 소소한 기적이 깃든 판타지 소설.",
+      "genreCode": "NV-02",
+      "coverImageUrl": "/covers/2.png",
+      "isLiked": false,
+      "createdAt": "2026-05-01T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:30:51.582Z"
+    },
+    {
+      "id": 3,
+      "title": "밤의 추적자",
+      "author": "김도현",
+      "content": "연쇄 실종 사건을 쫓는 전직 형사. 단서는 피해자들이 남긴 암호화된 일기뿐. 숨막히는 반전이 기다린다.",
+      "genreCode": "NV-03",
+      "coverImageUrl": "/covers/3.png",
+      "isLiked": false,
+      "createdAt": "2026-05-01T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:50.177Z"
+    },
+    {
+      "id": 4,
+      "title": "2150년의 기억",
+      "author": "박준혁",
+      "content": "기억을 데이터로 저장하는 시대. 죽은 아버지의 기억 파일을 열어버린 딸이 마주한 충격적인 진실.",
+      "genreCode": "NV-04",
+      "coverImageUrl": "/covers/4.png",
+      "isLiked": true,
+      "createdAt": "2026-05-02T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:39:14.124Z"
+    },
+    {
+      "id": 5,
+      "title": "붉은 저택의 비밀",
+      "author": "최유리",
+      "content": "100년 전 화재로 사라진 저택이 재건되던 날 밤, 첫 번째 입주자가 사라졌다. 기록에 없는 공포의 시작.",
+      "genreCode": "NV-05",
+      "coverImageUrl": "/covers/5.png",
+      "isLiked": false,
+      "createdAt": "2026-05-02T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:39.061Z"
+    },
+    {
+      "id": 6,
+      "title": "조선의 밀정",
+      "author": "정해원",
+      "content": "일제강점기 경성. 독립군과 친일파 사이에서 정보를 팔며 살아가는 한 남자의 이중 첩보 활극.",
+      "genreCode": "NV-06",
+      "coverImageUrl": "/covers/6.png",
+      "isLiked": false,
+      "createdAt": "2026-05-02T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:56.170Z"
+    },
+    {
+      "id": 7,
+      "title": "강 건너 저 마을에서",
+      "author": "윤수진",
+      "content": "고향을 떠난 지 20년. 어머니의 부고를 받고 돌아온 고향 마을에서 잊고 살았던 이름들을 다시 만난다.",
+      "genreCode": "NV-07",
+      "coverImageUrl": "/covers/7.png",
+      "isLiked": false,
+      "createdAt": "2026-05-03T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:02.583Z"
+    },
+    {
+      "id": 8,
+      "title": "빛과 어둠 사이",
+      "author": "이정희",
+      "content": "계절이 바뀌는 경계에서 길어 올린 시 72편. 상실과 기다림, 그리고 다시 찾아오는 것들에 대한 기록.",
+      "genreCode": "LT-01",
+      "coverImageUrl": "/covers/8.png",
+      "isLiked": false,
+      "createdAt": "2026-05-03T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:39:12.262Z"
+    },
+    {
+      "id": 9,
+      "title": "혼자이지만 괜찮아",
+      "author": "김지현",
+      "content": "30대 혼자 사는 일상. 출근길, 편의점 저녁, 늦은 밤 유튜브까지. 지극히 평범한 하루를 다독이는 에세이.",
+      "genreCode": "LT-02",
+      "coverImageUrl": "/covers/9.png",
+      "isLiked": false,
+      "createdAt": "2026-05-03T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:39:17.013Z"
+    },
+    {
+      "id": 10,
+      "title": "나 혼자 유럽 한 달",
+      "author": "박소연",
+      "content": "퇴사 후 배낭 하나 메고 떠난 111일의 여행기. 리스본에서 부다페스트까지, 길 위에서 얻은 것들.",
+      "genreCode": "LT-03",
+      "coverImageUrl": "/covers/10.png",
+      "isLiked": false,
+      "createdAt": "2026-05-04T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:31.470Z"
+    },
+    {
+      "id": 11,
+      "title": "오늘도 무사히",
+      "author": "김하늘",
+      "content": "평범한 직장인이 3년간 써내려간 일기. 별것 아닌 하루하루가 모여 삶이 된다는 것을 담담하게 기록한다.",
+      "genreCode": "LT-04",
+      "coverImageUrl": "/covers/11.png",
+      "isLiked": false,
+      "createdAt": "2026-05-04T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:39:27.535Z"
+    },
+    {
+      "id": 12,
+      "title": "생각한다는 것의 의미",
+      "author": "강민준",
+      "content": "소크라테스부터 현대 인지과학까지. 인간이 '생각'을 어떻게 정의해왔는지 추적하는 철학 입문서.",
+      "genreCode": "HU-01",
+      "coverImageUrl": "/covers/12.png",
+      "isLiked": false,
+      "createdAt": "2026-05-04T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:01.990Z"
+    },
+    {
+      "id": 13,
+      "title": "한국 근현대사 100년",
+      "author": "이동훈",
+      "content": "1919년부터 2019년까지. 격동의 100년을 인물과 사건 중심으로 재구성한 역사 교양서.",
+      "genreCode": "HU-02",
+      "coverImageUrl": "/covers/13.png",
+      "isLiked": false,
+      "createdAt": "2026-05-05T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:05.509Z"
+    },
+    {
+      "id": 14,
+      "title": "마음을 읽는 법",
+      "author": "신예진",
+      "content": "행동심리학과 인지편향 이론을 토대로 타인의 감정과 의도를 파악하는 실전 심리학 가이드.",
+      "genreCode": "HU-03",
+      "coverImageUrl": "/covers/14.png",
+      "isLiked": false,
+      "createdAt": "2026-05-05T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:07.295Z"
+    },
+    {
+      "id": 15,
+      "title": "명상의 시작",
+      "author": "류명진",
+      "content": "불교·기독교·이슬람의 명상법을 비교하며 현대인에게 맞는 마음 수련법을 제안하는 종교·사상 입문서.",
+      "genreCode": "HU-04",
+      "coverImageUrl": "/covers/15.png",
+      "isLiked": false,
+      "createdAt": "2026-05-05T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:45.756Z"
+    },
+    {
+      "id": 16,
+      "title": "언어의 온도",
+      "author": "장재형",
+      "content": "같은 말도 누가, 언제, 어떻게 말하느냐에 따라 달라진다. 한국어의 뉘앙스와 언어문화를 섬세하게 분석.",
+      "genreCode": "HU-05",
+      "coverImageUrl": "/covers/16.png",
+      "isLiked": false,
+      "createdAt": "2026-05-06T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:08.784Z"
+    },
+    {
+      "id": 17,
+      "title": "돈의 흐름을 읽어라",
+      "author": "조현식",
+      "content": "금리, 환율, 주식, 부동산이 서로 어떻게 연결되는지 한 권으로 설명하는 생활 경제학 입문서.",
+      "genreCode": "SS-01",
+      "coverImageUrl": "/covers/17.png",
+      "isLiked": false,
+      "createdAt": "2026-05-06T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:40:06.114Z"
+    },
+    {
+      "id": 18,
+      "title": "스타트업 생존 전략",
+      "author": "한승우",
+      "content": "창업 3년 이내 90%가 폐업한다. 살아남은 스타트업 20곳의 공통점과 의사결정 프레임워크.",
+      "genreCode": "SS-02",
+      "coverImageUrl": "/covers/18.png",
+      "isLiked": false,
+      "createdAt": "2026-05-06T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:39:28.912Z"
+    },
+    {
+      "id": 19,
+      "title": "민주주의의 미래",
+      "author": "임태호",
+      "content": "SNS 시대의 여론 형성, 포퓰리즘의 부상, 대의민주주의의 한계. 민주주의가 나아갈 방향을 논한다.",
+      "genreCode": "SS-03",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-07T09:00:00.000Z",
+      "updatedAt": "2026-05-07T09:00:00.000Z"
+    },
+    {
+      "id": 20,
+      "title": "법, 알고 살자",
+      "author": "이법무",
+      "content": "계약서·임대차·노동법·상속까지. 일상에서 꼭 알아야 할 법률 상식을 사례 중심으로 쉽게 풀어낸 법률 입문서.",
+      "genreCode": "SS-04",
+      "coverImageUrl": "/covers/20.png",
+      "isLiked": false,
+      "createdAt": "2026-05-07T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:42:29.338Z"
+    },
+    {
+      "id": 21,
+      "title": "클린 코드의 기술",
+      "author": "백승현",
+      "content": "읽기 좋은 코드는 왜 중요한가. 네이밍, 함수 분리, 리팩터링까지 실무에서 바로 쓰는 코드 품질 가이드.",
+      "genreCode": "SC-01",
+      "coverImageUrl": "/covers/21.png",
+      "isLiked": false,
+      "createdAt": "2026-05-07T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:42:51.467Z"
+    },
+    {
+      "id": 22,
+      "title": "GPT 이후의 세계",
+      "author": "서지원",
+      "content": "생성형 AI가 바꾸는 일, 교육, 창작의 미래. AI 리터러시가 새로운 생존 능력이 된 시대를 분석한다.",
+      "genreCode": "SC-02",
+      "coverImageUrl": "/covers/22.png",
+      "isLiked": true,
+      "createdAt": "2026-05-08T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:47:56.903Z"
+    },
+    {
+      "id": 23,
+      "title": "수학으로 보는 세상",
+      "author": "김형준",
+      "content": "확률, 통계, 위상수학이 실생활에 녹아있는 방식을 이야기로 풀어낸 수학 교양서.",
+      "genreCode": "SC-03",
+      "coverImageUrl": "/covers/23.png",
+      "isLiked": false,
+      "createdAt": "2026-05-08T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:42:55.445Z"
+    },
+    {
+      "id": 24,
+      "title": "양자역학 첫걸음",
+      "author": "이진수",
+      "content": "수식 없이 이해하는 양자의 세계. 이중 슬릿 실험부터 양자 컴퓨터까지 과학 비전공자를 위한 입문서.",
+      "genreCode": "SC-04",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-08T11:00:00.000Z",
+      "updatedAt": "2026-05-08T11:00:00.000Z"
+    },
+    {
+      "id": 25,
+      "title": "전기차의 모든 것",
+      "author": "정기호",
+      "content": "배터리 원리부터 충전 인프라, 자율주행까지. 전동화 시대를 이해하기 위한 공학 교양서.",
+      "genreCode": "SC-05",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-09T09:00:00.000Z",
+      "updatedAt": "2026-05-09T09:00:00.000Z"
+    },
+    {
+      "id": 26,
+      "title": "초등 수학 기초 다지기",
+      "author": "초등교육연구소",
+      "content": "1~6학년 수와 연산·도형·측정을 단계별 개념 설명과 유형별 문제로 체계적으로 정리한 초등 참고서.",
+      "genreCode": "ED-01",
+      "coverImageUrl": "/covers/26.png",
+      "isLiked": true,
+      "createdAt": "2026-05-09T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:42:35.611Z"
+    },
+    {
+      "id": 27,
+      "title": "중학 수학 개념 완성",
+      "author": "수학교육연구소",
+      "content": "중학 1~3학년 핵심 개념을 단계별로 정리. 개념 설명 → 예제 → 유제 → 서술형 문제로 구성된 참고서.",
+      "genreCode": "ED-02",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-09T11:00:00.000Z",
+      "updatedAt": "2026-05-09T11:00:00.000Z"
+    },
+    {
+      "id": 28,
+      "title": "수능 국어 실전 모의고사",
+      "author": "국어교육연구소",
+      "content": "최근 5개년 수능 출제 경향 완벽 분석. 실전 난이도 모의고사 10회분 + 해설 강의 QR 제공.",
+      "genreCode": "ED-03",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-10T09:00:00.000Z",
+      "updatedAt": "2026-05-10T09:00:00.000Z"
+    },
+    {
+      "id": 29,
+      "title": "영어회화 30일 완성",
+      "author": "이미나",
+      "content": "하루 20분, 30일 커리큘럼. 여행·비즈니스·일상 상황별 핵심 패턴 300개를 반복 훈련하는 어학 교재.",
+      "genreCode": "ED-04",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-10T10:00:00.000Z",
+      "updatedAt": "2026-05-10T10:00:00.000Z"
+    },
+    {
+      "id": 30,
+      "title": "9급 공무원 행정학 기출 총정리",
+      "author": "공무원시험연구소",
+      "content": "최근 10개년 9급 공무원 행정학 기출문제 완전 분석. 빈출 이론 정리 + 단원별 예상문제 수록.",
+      "genreCode": "EX-01",
+      "coverImageUrl": "/covers/30.png",
+      "isLiked": false,
+      "createdAt": "2026-05-10T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:45:57.394Z"
+    },
+    {
+      "id": 31,
+      "title": "정보처리기사 필기 한권 완성",
+      "author": "IT자격증연구소",
+      "content": "소프트웨어 설계부터 정보시스템 구축관리까지 5과목 핵심 이론 정리. CBT 모의고사 5회 제공.",
+      "genreCode": "EX-02",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-11T09:00:00.000Z",
+      "updatedAt": "2026-05-11T09:00:00.000Z"
+    },
+    {
+      "id": 32,
+      "title": "TOEIC 900 실전 모의고사",
+      "author": "토익연구소",
+      "content": "LC·RC 파트별 전략과 실전 모의고사 10회. 최신 토익 출제 패턴 반영, 정답률 분석 제공.",
+      "genreCode": "EX-03",
+      "coverImageUrl": "/covers/32.png",
+      "isLiked": false,
+      "createdAt": "2026-05-11T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:30:21.431Z"
+    },
+    {
+      "id": 33,
+      "title": "공인중개사 부동산학개론",
+      "author": "공인중개사연구소",
+      "content": "1차 시험 부동산학개론 완전 정복. 부동산 경제론·시장론·정책론·투자론 핵심 이론 + 기출 해설.",
+      "genreCode": "EX-04",
+      "coverImageUrl": "/covers/33.png",
+      "isLiked": false,
+      "createdAt": "2026-05-11T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:46:40.337Z"
+    },
+    {
+      "id": 34,
+      "title": "투자자산운용사 핵심이론",
+      "author": "금융자격연구소",
+      "content": "펀드·채권·파생상품 운용 이론 총정리. 투자자산운용사 시험 합격률 1위 교재, 핵심 요약 + 문제풀이.",
+      "genreCode": "EX-05",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-12T09:00:00.000Z",
+      "updatedAt": "2026-05-12T09:00:00.000Z"
+    },
+    {
+      "id": 35,
+      "title": "아침 5시의 기적",
+      "author": "정유진",
+      "content": "새벽 루틴이 인생을 바꾼다. 30일 챌린지를 통해 자기계발 습관을 형성하는 구체적인 실천 가이드.",
+      "genreCode": "SD-01",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-12T10:00:00.000Z",
+      "updatedAt": "2026-05-12T10:00:00.000Z"
+    },
+    {
+      "id": 36,
+      "title": "리더의 언어",
+      "author": "황성민",
+      "content": "팀을 움직이는 말, 신뢰를 쌓는 피드백, 갈등을 해소하는 대화법. 조직 리더를 위한 커뮤니케이션 교과서.",
+      "genreCode": "SD-02",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-12T11:00:00.000Z",
+      "updatedAt": "2026-05-12T11:00:00.000Z"
+    },
+    {
+      "id": 37,
+      "title": "딥워크",
+      "author": "최서준",
+      "content": "집중력이 곧 경쟁력이다. 방해 없는 몰입 시간을 만드는 환경 설계와 집중 훈련법.",
+      "genreCode": "SD-03",
+      "coverImageUrl": "/covers/37.png",
+      "isLiked": false,
+      "createdAt": "2026-05-13T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:47:39.102Z"
+    },
+    {
+      "id": 38,
+      "title": "말의 품격",
+      "author": "오세민",
+      "content": "듣는 사람을 배려하는 말하기, 상처 주지 않는 거절법, 호감을 얻는 첫 마디. 관계를 바꾸는 언어 습관.",
+      "genreCode": "SD-04",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-13T10:00:00.000Z",
+      "updatedAt": "2026-05-13T10:00:00.000Z"
+    },
+    {
+      "id": 39,
+      "title": "그림 보는 즐거움",
+      "author": "이예린",
+      "content": "미술관에서 그림 앞에 서면 무슨 말을 해야 할지 모르는 사람을 위한 서양미술사 친절 안내서.",
+      "genreCode": "AR-01",
+      "coverImageUrl": "/covers/39.png",
+      "isLiked": false,
+      "createdAt": "2026-05-13T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:45:43.458Z"
+    },
+    {
+      "id": 40,
+      "title": "클래식이 쉬워지는 날",
+      "author": "박음악",
+      "content": "베토벤, 모차르트, 쇼팽… 교과서에서만 보던 작곡가들의 삶과 대표곡을 에피소드로 풀어낸 클래식 입문서.",
+      "genreCode": "AR-02",
+      "coverImageUrl": "/covers/40.png",
+      "isLiked": false,
+      "createdAt": "2026-05-14T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:31:46.621Z"
+    },
+    {
+      "id": 41,
+      "title": "집밥의 과학",
+      "author": "김미영",
+      "content": "왜 식당 음식이 더 맛있을까? 불 세기, 간 맞추기, 식재료 손질의 과학적 원리를 풀어낸 요리책.",
+      "genreCode": "AR-03",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-14T10:00:00.000Z",
+      "updatedAt": "2026-05-14T10:00:00.000Z"
+    },
+    {
+      "id": 42,
+      "title": "제주 한달살기",
+      "author": "오지훈",
+      "content": "숙소 고르기부터 렌트카, 숨은 맛집, 계절별 추천 코스까지. 제주 장기 체류 완전 실전 가이드.",
+      "genreCode": "AR-04",
+      "coverImageUrl": "/covers/42.png",
+      "isLiked": false,
+      "createdAt": "2026-05-14T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:30:23.818Z"
+    },
+    {
+      "id": 43,
+      "title": "달리기의 철학",
+      "author": "이운동",
+      "content": "5km부터 풀마라톤까지. 달리기가 단순한 운동을 넘어 삶의 태도가 되는 과정을 담은 러닝 에세이.",
+      "genreCode": "AR-05",
+      "coverImageUrl": "/covers/43.png",
+      "isLiked": false,
+      "createdAt": "2026-05-15T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:46:56.284Z"
+    },
+    {
+      "id": 44,
+      "title": "파란 하늘 아이",
+      "author": "류지아",
+      "content": "구름 위에 사는 꼬마 구름이 처음으로 땅을 밟는 이야기. 세상의 넓음과 다름을 배우는 그림책.",
+      "genreCode": "KD-01",
+      "coverImageUrl": "/covers/44.png",
+      "isLiked": false,
+      "createdAt": "2026-05-15T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:31:00.232Z"
+    },
+    {
+      "id": 45,
+      "title": "마법사 이든의 모험",
+      "author": "장준서",
+      "content": "마법 학교 낙제생 이든이 친구들과 함께 고대 마법서를 찾아 떠나는 대모험. 어린이 판타지 동화.",
+      "genreCode": "KD-02",
+      "coverImageUrl": "/covers/45.png",
+      "isLiked": true,
+      "createdAt": "2026-05-15T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:47:47.799Z"
+    },
+    {
+      "id": 46,
+      "title": "열일곱의 여름",
+      "author": "김나연",
+      "content": "고등학교 2학년 여름, 진로·우정·첫사랑이 한꺼번에 쏟아진다. 공감 100%의 청소년 성장소설.",
+      "genreCode": "KD-03",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-16T09:00:00.000Z",
+      "updatedAt": "2026-05-16T09:00:00.000Z"
+    },
+    {
+      "id": 47,
+      "title": "만화로 보는 한국사",
+      "author": "역사만화연구소",
+      "content": "선사시대부터 현대까지 한국사의 흐름을 재미있는 만화와 간결한 해설로 정리한 어린이·청소년 학습만화.",
+      "genreCode": "KD-04",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-16T10:00:00.000Z",
+      "updatedAt": "2026-05-16T10:00:00.000Z"
+    },
+    {
+      "id": 48,
+      "title": "100세까지 건강하게",
+      "author": "박정호",
+      "content": "대한내과학회 추천 도서. 연령대별 필수 건강검진, 만성질환 예방, 건강한 식습관을 체계적으로 안내.",
+      "genreCode": "HE-01",
+      "coverImageUrl": "/covers/48.png",
+      "isLiked": true,
+      "createdAt": "2026-05-16T11:00:00.000Z",
+      "updatedAt": "2026-05-22T06:45:35.842Z"
+    },
+    {
+      "id": 49,
+      "title": "약, 알고 먹기",
+      "author": "이약사",
+      "content": "해열제, 항생제, 소화제… 우리가 자주 먹는 약의 성분과 올바른 복용법을 약사가 직접 알려주는 실용 의학서.",
+      "genreCode": "HE-02",
+      "coverImageUrl": "/covers/49.png",
+      "isLiked": false,
+      "createdAt": "2026-05-17T09:00:00.000Z",
+      "updatedAt": "2026-05-22T06:31:38.606Z"
+    },
+    {
+      "id": 50,
+      "title": "30분 홈트레이닝",
+      "author": "이강민",
+      "content": "기구 없이 집에서 할 수 있는 전신 운동 루틴. 초급·중급·고급 단계별 구성, QR 코드로 영상 연동.",
+      "genreCode": "HE-03",
+      "coverImageUrl": "/covers/50.png",
+      "isLiked": false,
+      "createdAt": "2026-05-17T10:00:00.000Z",
+      "updatedAt": "2026-05-22T06:45:32.380Z"
+    },
+    {
+      "id": 51,
+      "title": "번아웃에서 벗어나기",
+      "author": "정신건강연구소",
+      "content": "직장인 번아웃의 원인과 회복 단계를 심리학적으로 분석. 자기 돌봄 루틴과 스트레스 대처법 수록.",
+      "genreCode": "HE-04",
+      "coverImageUrl": "",
+      "isLiked": false,
+      "createdAt": "2026-05-17T11:00:00.000Z",
+      "updatedAt": "2026-05-17T11:00:00.000Z"
+    }
+  ],
+  "genres": [
+    {
+      "code": "NV",
+      "label": "소설",
+      "parentCode": null
+    },
+    {
+      "code": "NV-01",
+      "label": "로맨스",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-02",
+      "label": "판타지",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-03",
+      "label": "스릴러/미스터리",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-04",
+      "label": "SF/공상과학",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-05",
+      "label": "호러",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-06",
+      "label": "역사소설",
+      "parentCode": "NV"
+    },
+    {
+      "code": "NV-07",
+      "label": "순문학",
+      "parentCode": "NV"
+    },
+    {
+      "code": "LT",
+      "label": "시/에세이",
+      "parentCode": null
+    },
+    {
+      "code": "LT-01",
+      "label": "시",
+      "parentCode": "LT"
+    },
+    {
+      "code": "LT-02",
+      "label": "에세이/수필",
+      "parentCode": "LT"
+    },
+    {
+      "code": "LT-03",
+      "label": "여행기",
+      "parentCode": "LT"
+    },
+    {
+      "code": "LT-04",
+      "label": "일기/다이어리",
+      "parentCode": "LT"
+    },
+    {
+      "code": "HU",
+      "label": "인문/교양",
+      "parentCode": null
+    },
+    {
+      "code": "HU-01",
+      "label": "철학",
+      "parentCode": "HU"
+    },
+    {
+      "code": "HU-02",
+      "label": "역사",
+      "parentCode": "HU"
+    },
+    {
+      "code": "HU-03",
+      "label": "심리학",
+      "parentCode": "HU"
+    },
+    {
+      "code": "HU-04",
+      "label": "종교/사상",
+      "parentCode": "HU"
+    },
+    {
+      "code": "HU-05",
+      "label": "언어/문화",
+      "parentCode": "HU"
+    },
+    {
+      "code": "SS",
+      "label": "사회/경제/경영",
+      "parentCode": null
+    },
+    {
+      "code": "SS-01",
+      "label": "경제",
+      "parentCode": "SS"
+    },
+    {
+      "code": "SS-02",
+      "label": "경영/마케팅",
+      "parentCode": "SS"
+    },
+    {
+      "code": "SS-03",
+      "label": "정치/사회",
+      "parentCode": "SS"
+    },
+    {
+      "code": "SS-04",
+      "label": "법률",
+      "parentCode": "SS"
+    },
+    {
+      "code": "SC",
+      "label": "과학/기술",
+      "parentCode": null
+    },
+    {
+      "code": "SC-01",
+      "label": "IT/컴퓨터",
+      "parentCode": "SC"
+    },
+    {
+      "code": "SC-02",
+      "label": "AI/데이터과학",
+      "parentCode": "SC"
+    },
+    {
+      "code": "SC-03",
+      "label": "수학",
+      "parentCode": "SC"
+    },
+    {
+      "code": "SC-04",
+      "label": "자연과학",
+      "parentCode": "SC"
+    },
+    {
+      "code": "SC-05",
+      "label": "공학",
+      "parentCode": "SC"
+    },
+    {
+      "code": "ED",
+      "label": "교육/참고서",
+      "parentCode": null
+    },
+    {
+      "code": "ED-01",
+      "label": "초등참고서",
+      "parentCode": "ED"
+    },
+    {
+      "code": "ED-02",
+      "label": "중등참고서",
+      "parentCode": "ED"
+    },
+    {
+      "code": "ED-03",
+      "label": "고등참고서",
+      "parentCode": "ED"
+    },
+    {
+      "code": "ED-04",
+      "label": "어학교재",
+      "parentCode": "ED"
+    },
+    {
+      "code": "EX",
+      "label": "수험서/자격증",
+      "parentCode": null
+    },
+    {
+      "code": "EX-01",
+      "label": "공무원시험",
+      "parentCode": "EX"
+    },
+    {
+      "code": "EX-02",
+      "label": "IT자격증",
+      "parentCode": "EX"
+    },
+    {
+      "code": "EX-03",
+      "label": "어학시험",
+      "parentCode": "EX"
+    },
+    {
+      "code": "EX-04",
+      "label": "전문자격증",
+      "parentCode": "EX"
+    },
+    {
+      "code": "EX-05",
+      "label": "금융자격증",
+      "parentCode": "EX"
+    },
+    {
+      "code": "SD",
+      "label": "자기계발",
+      "parentCode": null
+    },
+    {
+      "code": "SD-01",
+      "label": "동기부여/성공",
+      "parentCode": "SD"
+    },
+    {
+      "code": "SD-02",
+      "label": "리더십/경력",
+      "parentCode": "SD"
+    },
+    {
+      "code": "SD-03",
+      "label": "시간관리/생산성",
+      "parentCode": "SD"
+    },
+    {
+      "code": "SD-04",
+      "label": "인간관계/소통",
+      "parentCode": "SD"
+    },
+    {
+      "code": "AR",
+      "label": "예술/취미",
+      "parentCode": null
+    },
+    {
+      "code": "AR-01",
+      "label": "미술/디자인",
+      "parentCode": "AR"
+    },
+    {
+      "code": "AR-02",
+      "label": "음악",
+      "parentCode": "AR"
+    },
+    {
+      "code": "AR-03",
+      "label": "요리/제과",
+      "parentCode": "AR"
+    },
+    {
+      "code": "AR-04",
+      "label": "여행/지리",
+      "parentCode": "AR"
+    },
+    {
+      "code": "AR-05",
+      "label": "스포츠/레저",
+      "parentCode": "AR"
+    },
+    {
+      "code": "KD",
+      "label": "어린이/청소년",
+      "parentCode": null
+    },
+    {
+      "code": "KD-01",
+      "label": "그림책",
+      "parentCode": "KD"
+    },
+    {
+      "code": "KD-02",
+      "label": "동화",
+      "parentCode": "KD"
+    },
+    {
+      "code": "KD-03",
+      "label": "청소년소설",
+      "parentCode": "KD"
+    },
+    {
+      "code": "KD-04",
+      "label": "학습만화",
+      "parentCode": "KD"
+    },
+    {
+      "code": "HE",
+      "label": "건강/의학",
+      "parentCode": null
+    },
+    {
+      "code": "HE-01",
+      "label": "건강관리",
+      "parentCode": "HE"
+    },
+    {
+      "code": "HE-02",
+      "label": "의학/약학",
+      "parentCode": "HE"
+    },
+    {
+      "code": "HE-03",
+      "label": "운동/다이어트",
+      "parentCode": "HE"
+    },
+    {
+      "code": "HE-04",
+      "label": "정신건강",
+      "parentCode": "HE"
+    }
+  ]
+}
