@@ -1,6 +1,8 @@
 package com.aivle.bookapp.controller;
 
-import com.aivle.bookapp.entity.Book;
+import com.aivle.bookapp.dto.BookCreateRequest;
+import com.aivle.bookapp.dto.BookResponse;
+import com.aivle.bookapp.dto.BookUpdateRequest;
 import com.aivle.bookapp.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/books")
@@ -18,7 +19,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<Book> getBooks(
+    public List<BookResponse> getBooks(
             @RequestParam(required = false) String title_like,
             @RequestParam(required = false) String genreCode,
             @RequestParam(required = false) String genreCode_like,
@@ -30,19 +31,19 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable Long id) {
+    public BookResponse getBook(@PathVariable Long id) {
         return bookService.getBook(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Book createBook(@Valid @RequestBody Book book) {
-        return bookService.createBook(book);
+    public BookResponse createBook(@Valid @RequestBody BookCreateRequest req) {
+        return bookService.createBook(req);
     }
 
     @PatchMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Map<String, Object> fields) {
-        return bookService.updateBook(id, fields);
+    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookUpdateRequest req) {
+        return bookService.updateBook(id, req);
     }
 
     @DeleteMapping("/{id}")

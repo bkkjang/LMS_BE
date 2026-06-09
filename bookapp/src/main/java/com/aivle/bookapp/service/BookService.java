@@ -1,5 +1,8 @@
 package com.aivle.bookapp.service;
 
+import com.aivle.bookapp.dto.BookCreateRequest;
+import com.aivle.bookapp.dto.BookResponse;
+import com.aivle.bookapp.dto.BookUpdateRequest;
 import com.aivle.bookapp.entity.Book;
 import com.aivle.bookapp.exception.BookNotFoundException;
 import com.aivle.bookapp.repository.BookRepository;
@@ -9,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +20,8 @@ public class BookService {
     private final BookRepository bookRepository;
 
     @Transactional(readOnly = true)
-    public List<Book> getBooks(String titleLike, String genreCode, String genreCodeLike,
-                               Boolean isLiked, String sort, String order) {
+    public List<BookResponse> getBooks(String titleLike, String genreCode, String genreCodeLike,
+                                       Boolean isLiked, String sort, String order) {
         List<Book> books;
         boolean liked = Boolean.TRUE.equals(isLiked);
 
@@ -49,7 +51,9 @@ public class BookService {
             books = bookRepository.findAll();
         }
 
-        return sortBooks(books, sort, order);
+        return sortBooks(books, sort, order).stream()
+                .map(BookResponse::new)
+                .toList();
     }
 
     private List<Book> sortBooks(List<Book> books, String sort, String order) {
@@ -64,30 +68,39 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public Book getBook(Long id) {
-        return bookRepository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+    public BookResponse getBook(Long id) {
+        return new BookResponse(bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id)));
     }
 
     @Transactional
-    public Book createBook(Book book) {
-        return bookRepository.save(book);
+    public BookResponse createBook(BookCreateRequest req) {
+        Book book = new Book();
+        book.setTitle(req.getTitle());
+        book.setAuthor(req.getAuthor());
+        book.setGenreCode(req.getGenreCode());
+        book.setContent(req.getContent());
+        book.setCoverImageUrl(req.getCoverImageUrl());
+        book.setLiked(req.isLiked());
+        book.setCreatedAt(req.getCreatedAt());
+        book.setUpdatedAt(req.getUpdatedAt());
+        return new BookResponse(bookRepository.save(book));
     }
 
     @Transactional
-    public Book updateBook(Long id, Map<String, Object> fields) {
+    public BookResponse updateBook(Long id, BookUpdateRequest req) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
 
-        if (fields.containsKey("title"))        book.setTitle((String) fields.get("title"));
-        if (fields.containsKey("author"))       book.setAuthor((String) fields.get("author"));
-        if (fields.containsKey("genreCode"))    book.setGenreCode((String) fields.get("genreCode"));
-        if (fields.containsKey("content"))      book.setContent((String) fields.get("content"));
-        if (fields.containsKey("coverImageUrl")) book.setCoverImageUrl((String) fields.get("coverImageUrl"));
-        if (fields.containsKey("isLiked"))      book.setLiked((Boolean) fields.get("isLiked"));
-        if (fields.containsKey("updatedAt"))    book.setUpdatedAt((String) fields.get("updatedAt"));
+        if (req.getTitle()        != null) book.setTitle(req.getTitle());
+        if (req.getAuthor()       != null) book.setAuthor(req.getAuthor());
+        if (req.getGenreCode()    != null) book.setGenreCode(req.getGenreCode());
+        if (req.getContent()      != null) book.setContent(req.getContent());
+        if (req.getCoverImageUrl()!= null) book.setCoverImageUrl(req.getCoverImageUrl());
+        if (req.getIsLiked()      != null) book.setLiked(req.getIsLiked());
+        if (req.getUpdatedAt()    != null) book.setUpdatedAt(req.getUpdatedAt());
 
-        return bookRepository.save(book);
+        return new BookResponse(bookRepository.save(book));
     }
 
     @Transactional
