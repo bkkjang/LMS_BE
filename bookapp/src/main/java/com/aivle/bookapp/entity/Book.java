@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "book")
 @Getter @Setter
@@ -37,9 +39,21 @@ public class Book {
     @Column(name = "is_liked", nullable = false)
     private boolean isLiked = false;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private String createdAt;
 
     @Column(name = "updated_at", nullable = false)
     private String updatedAt;
+
+    @PrePersist
+    private void onCreate() {
+        String now = Instant.now().toString();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = Instant.now().toString();
+    }
 }

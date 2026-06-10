@@ -1,6 +1,8 @@
 package com.aivle.bookapp.controller;
 
-import com.aivle.bookapp.entity.Book;
+import com.aivle.bookapp.dto.BookCreateRequest;
+import com.aivle.bookapp.dto.BookResponse;
+import com.aivle.bookapp.dto.BookUpdateRequest;
 import com.aivle.bookapp.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/books")
@@ -17,9 +18,8 @@ public class BookController {
 
     private final BookService bookService;
 
-    // GET /books
     @GetMapping
-    public List<Book> getBooks(
+    public List<BookResponse> getBooks(
             @RequestParam(required = false) String title_like,
             @RequestParam(required = false) String genreCode,
             @RequestParam(required = false) String genreCode_like,
@@ -27,36 +27,33 @@ public class BookController {
             @RequestParam(required = false, defaultValue = "createdAt") String _sort,
             @RequestParam(required = false, defaultValue = "desc") String _order
     ) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+        return bookService.getBooks(title_like, genreCode, genreCode_like, isLiked, _sort, _order);
     }
 
-    // GET /books/{id}
     @GetMapping("/{id}")
-    public Book getBook(@PathVariable Long id) {
-        // TODO: 2일차 미션 3 구현
-        return null;
+    public BookResponse getBook(@PathVariable Long id) {
+        return bookService.getBook(id);
     }
 
-    // POST /books
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Book createBook(@Valid @RequestBody Book book) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+    public BookResponse createBook(@Valid @RequestBody BookCreateRequest req) {
+        return bookService.createBook(req);
     }
 
-    // PATCH /books/{id}
     @PatchMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Map<String, Object> fields) {
-        // TODO: 2일차 미션 4 구현
-        return null;
+    public BookResponse updateBook(@PathVariable Long id, @RequestBody BookUpdateRequest req) {
+        return bookService.updateBook(id, req);
     }
 
-    // DELETE /books/{id}
+    @PatchMapping("/{id}/like")
+    public BookResponse toggleLike(@PathVariable Long id) {
+        return bookService.toggleLike(id);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBook(@PathVariable Long id) {
-        // TODO: 2일차 미션 4 구현
+        bookService.deleteBook(id);
     }
 }

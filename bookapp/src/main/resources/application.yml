@@ -1,18 +1,26 @@
-server:
-  port: 8080
-
 spring:
   application:
     name: bookapp
+
   datasource:
-    url: jdbc:mysql://localhost:3306/bookdb
+    url: jdbc:mysql://localhost:3306/bookdb?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: Wkdqhdrud2@
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
+
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+
+server:
+  port: 8080
