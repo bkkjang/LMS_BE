@@ -33,7 +33,8 @@ public class Book {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "cover_image_url", columnDefinition = "TEXT")
+    // AI 표지는 base64 data URL(수 MB)로 저장될 수 있어 LONGTEXT. 짧은 경로(/covers/x.png)도 호환.
+    @Column(name = "cover_image_url", columnDefinition = "LONGTEXT")
     private String coverImageUrl;
 
     @Column(name = "created_at", nullable = false, updatable = false)
