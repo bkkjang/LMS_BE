@@ -21,5 +21,4 @@ public class BookCreateRequest {
     private String content;
 
     private String coverImageUrl = "";
-    private Boolean isLiked = false;
 }

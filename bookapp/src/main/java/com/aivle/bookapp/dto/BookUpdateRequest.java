@@ -12,5 +12,4 @@ public class BookUpdateRequest {
     private String genreCode;
     private String content;
     private String coverImageUrl;
-    private Boolean isLiked;
 }

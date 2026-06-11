@@ -10,17 +10,37 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     defer-datasource-initialization: true
     properties:
       hibernate:
         format_sql: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ohhyun1231@gmail.com
+    password: yzajuhxhvvrfdphl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   sql:
     init:
-      mode: always
+      mode: never
       encoding: UTF-8
+
+jwt:
+  secret: YWl2bGVsbXNwcm9qZWN0and0c2VjcmV0a2V5MjAyNmFpdmxlbG1z
+  expiration: 86400000
+
+naver:
+  client-id: HyOHzX3Vwm6lvMggJ_8k
+  client-secret: JKU27BdVCV
 
 server:
   port: 8080

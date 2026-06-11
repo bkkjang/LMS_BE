@@ -36,9 +36,6 @@ public class Book {
     @Column(name = "cover_image_url", columnDefinition = "TEXT")
     private String coverImageUrl;
 
-    @Column(name = "is_liked", nullable = false)
-    private boolean isLiked = false;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     private String createdAt;
 
