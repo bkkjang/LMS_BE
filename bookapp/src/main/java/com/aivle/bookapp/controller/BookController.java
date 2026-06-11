@@ -7,6 +7,7 @@ import com.aivle.bookapp.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -60,11 +61,13 @@ public class BookController {
     }
 
     // SecurityContext에서 현재 로그인한 유저의 이메일을 꺼낸다. 비로그인이면 null.
+    // AnonymousAuthenticationToken 체크 필수 — 토큰 없는 요청도 Spring Security가
+    // principal="anonymousUser" 인 익명 객체를 자동으로 넣기 때문에 null 체크만으로는 부족하다.
     private String currentUserEmail() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof String email) {
-            return email;
+        if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
+            return null;
         }
-        return null;
+        return (String) auth.getPrincipal();
     }
 }
