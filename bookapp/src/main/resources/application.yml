@@ -42,5 +42,10 @@ naver:
   client-id: HyOHzX3Vwm6lvMggJ_8k
   client-secret: JKU27BdVCV
 
+# OpenAI 프록시용 키 — 환경변수 OPENAI_API_KEY 로 주입(없으면 빈 값).
+# 절대 깃에 직접 키를 커밋하지 말 것. 새로 발급한 키를 OPENAI_API_KEY 로 넣어 실행.
+openai:
+  api-key: ${OPENAI_API_KEY:}
+
 server:
   port: 8080
