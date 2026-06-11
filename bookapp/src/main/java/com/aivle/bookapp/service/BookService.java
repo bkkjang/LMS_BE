@@ -22,37 +22,14 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BookResponse> getBooks(String titleLike, String genreCode, String genreCodeLike,
                                        Boolean isLiked, String sort, String order) {
-        Sort s = buildSort(sort, order);
-        boolean liked = Boolean.TRUE.equals(isLiked);
-        List<Book> books;
+        // 기존 동작 유지: isLiked가 true일 때만 좋아요 필터, false/null이면 전체 조회.
+        // → true가 아니면 null로 넘겨 쿼리의 (:liked IS NULL) 조건으로 필터를 건너뛴다.
+        Boolean liked = Boolean.TRUE.equals(isLiked) ? Boolean.TRUE : null;
 
-        if (titleLike != null && genreCode != null) {
-            books = liked
-                    ? bookRepository.findByTitleContainingAndGenreCodeAndIsLikedTrue(titleLike, genreCode, s)
-                    : bookRepository.findByTitleContainingAndGenreCode(titleLike, genreCode, s);
-        } else if (titleLike != null && genreCodeLike != null) {
-            books = liked
-                    ? bookRepository.findByTitleContainingAndGenreCodeStartingWithAndIsLikedTrue(titleLike, genreCodeLike, s)
-                    : bookRepository.findByTitleContainingAndGenreCodeStartingWith(titleLike, genreCodeLike, s);
-        } else if (titleLike != null) {
-            books = liked
-                    ? bookRepository.findByTitleContainingAndIsLikedTrue(titleLike, s)
-                    : bookRepository.findByTitleContaining(titleLike, s);
-        } else if (genreCode != null) {
-            books = liked
-                    ? bookRepository.findByGenreCodeAndIsLikedTrue(genreCode, s)
-                    : bookRepository.findByGenreCode(genreCode, s);
-        } else if (genreCodeLike != null) {
-            books = liked
-                    ? bookRepository.findByGenreCodeStartingWithAndIsLikedTrue(genreCodeLike, s)
-                    : bookRepository.findByGenreCodeStartingWith(genreCodeLike, s);
-        } else if (liked) {
-            books = bookRepository.findByIsLikedTrue(s);
-        } else {
-            books = bookRepository.findAll(s);
-        }
-
-        return books.stream().map(BookResponse::new).toList();
+        // 검색·필터 분기는 모두 Repository.search()의 동적 쿼리로 위임(과거의 긴 if-else 사다리 제거).
+        // 인자가 null인 조건은 쿼리에서 자동으로 무시된다.
+        return bookRepository.search(titleLike, genreCode, genreCodeLike, liked, buildSort(sort, order))
+                .stream().map(BookResponse::new).toList();
     }
 
     private Sort buildSort(String sort, String order) {
