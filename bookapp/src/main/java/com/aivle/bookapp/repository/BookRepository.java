@@ -1,6 +1,8 @@
 package com.aivle.bookapp.repository;
 
 import com.aivle.bookapp.entity.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -33,10 +35,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
               AND (:genreCode   IS NULL OR b.genreCode = :genreCode)
               AND (:genrePrefix IS NULL OR b.genreCode LIKE CONCAT(CAST(:genrePrefix AS string), '%'))
             """)
-    List<Book> search(@Param("title") String title,
+    // Pageable 에 page·size·sort 가 모두 포함 — 10,000건 전체 조회 대신 20건씩 분할 반환
+    Page<Book> search(@Param("title") String title,
                       @Param("genreCode") String genreCode,     // 장르 정확 일치
                       @Param("genrePrefix") String genrePrefix, // 장르 접두어 매칭
-                      Sort sort);
+                      Pageable pageable);
 
     // 사용자가 좋아요한 도서 ID 목록으로 조회 (유저 책장 필터링용)
     List<Book> findByIdIn(Collection<Long> ids, Sort sort);

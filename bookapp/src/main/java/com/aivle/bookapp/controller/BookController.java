@@ -6,13 +6,12 @@ import com.aivle.bookapp.dto.BookUpdateRequest;
 import com.aivle.bookapp.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -22,15 +21,17 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<BookResponse> getBooks(
+    public Page<BookResponse> getBooks(
             @RequestParam(required = false) String title_like,
             @RequestParam(required = false) String genreCode,
             @RequestParam(required = false) String genreCode_like,
             @RequestParam(required = false) Boolean isLiked,
             @RequestParam(required = false, defaultValue = "createdAt") String _sort,
-            @RequestParam(required = false, defaultValue = "desc") String _order
+            @RequestParam(required = false, defaultValue = "desc") String _order,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "20") int size
     ) {
-        return bookService.getBooks(title_like, genreCode, genreCode_like, isLiked, _sort, _order, currentUserEmail());
+        return bookService.getBooks(title_like, genreCode, genreCode_like, isLiked, _sort, _order, page, size, currentUserEmail());
     }
 
     @GetMapping("/{id}")

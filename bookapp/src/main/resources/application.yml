@@ -29,6 +29,9 @@ spring:
           starttls:
             enable: true
 
+  cache:
+    type: simple  # 인메모리 캐시 (ConcurrentHashMap) — 추가 의존성 없이 @Cacheable 동작
+
   sql:
     init:
       mode: never
