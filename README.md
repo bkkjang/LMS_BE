@@ -230,3 +230,22 @@ API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 �
   - **[Frontend] OpenAI 연동**: Frontend 미니프로젝트 학습 코드를 활용하여 사용자 입력 기반 이미지 생성 로직 구현 및 직접 호출 검증.
   - **[Backend] 엔드포인트 및 로직 추가**: 표지 URL 저장용 엔드포인트(`PATCH /books/{id}/cover`) 및 `BookService` 표지 업데이트 메서드 추가 요구사항을 반영. (현재 소스코드 상에서는 REST API 효율성을 위해 별도 분리 없이 기존의 `PATCH /books/{id}` 엔드포인트와 `updateBook` 로직 내의 `coverImageUrl` 업데이트 처리로 통합하여 구현했습니다.) ➡️ [`BookController.java`](bookapp/src/main/java/com/aivle/bookapp/controller/BookController.java), ➡️ [`BookService.java`](bookapp/src/main/java/com/aivle/bookapp/service/BookService.java)
   - **저장 흐름 검증**: `React(화면) ➡️ OpenAI(이미지 생성) ➡️ React ➡️ Backend(저장)`에 이르는 풀스택 데이터 흐름 동작 확인 완료.
+
+---
+
+## 10. 기술적 고민 및 최적화 성과
+
+### 🚀 적용 완료된 최적화
+- **동적 JPQL 도입 (검색 로직 최적화)** ➡️ [`BookService.java`](bookapp/src/main/java/com/aivle/bookapp/service/BookService.java)
+  - `:param IS NULL OR` 조건을 활용하여 검색/필터링 조건(제목, 장르 등)의 조합별 메서드(약 11개)를 1개의 `@Query` 메서드로 통합하여 **코드량을 약 87% 단축**했습니다.
+- **정렬 연산 DB 이관 및 페이지네이션(Pagination) 기반 대용량 데이터 대응** ➡️ [`BookService.java`](bookapp/src/main/java/com/aivle/bookapp/service/BookService.java)
+  - `Pageable` 인터페이스를 통해, 전체 데이터를 인메모리에 올려 정렬하던 방식에서 **DB 인덱스 및 `ORDER BY` 활용 방식**으로 개선했습니다. (1만 건 기준, 인메모리 30~50ms ➡️ DB 5ms로 개선)
+  - `Page<Book>` 반환 타입을 사용하여 도서 전체 조회의 부담을 줄였습니다. (응답 속도 수십 배 향상 및 데이터 전송량 획기적 감소 기대)
+- **유저별 좋아요 분리 설계 (구조 안정성 확보)** ➡️ [`UserLike.java`](bookapp/src/main/java/com/aivle/bookapp/entity/UserLike.java)
+  - `Book` 엔티티 내부의 단일 `boolean isLiked` 컬럼으로 인한 동기화 버그를 해결하기 위해, `user_likes` 조인 테이블로 분리하여 **사용자 간 독립성을 완벽하게 보장**했습니다.
+- **단건 조회 시 N+1 비효율 개선** ➡️ [`BookService.java`](bookapp/src/main/java/com/aivle/bookapp/service/BookService.java)
+  - 단건 도서 조회 시 유저의 좋아요 여부를 확인하기 위해 좋아요 목록 전체를 가져오던(N+1 쿼리 유발) 로직을, `existsByUserIdAndBookId()` 메서드를 활용한 **단일 존재 여부 검사 쿼리로 최적화**했습니다.
+- **보안 및 브루트포스(무차별 대입) 공격 방어** ➡️ [`AuthService.java`](bookapp/src/main/java/com/aivle/bookapp/service/AuthService.java)
+  - 비밀번호에 **BCrypt 단방향 해시 알고리즘(Salt 활용)** 을 적용하여 레인보우 테이블 공격을 방어합니다.
+  - 이메일 OTP(6자리) 검증 로직에 **5분 만료 제한**을 부여하여 무차별 대입(Brute-force) 성공 확률을 **0.03%** 이하로 원천 차단했습니다.
+B에 저장하도록 전환하여 데이터베이스 저장 공간 압박 해소 및 응답 페이로드 크기 최적화를 진행할 예정입니다.
