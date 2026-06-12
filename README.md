@@ -6,7 +6,19 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
 
 이 프로젝트는 3-Tier 아키텍처(Controller-Service-Repository)를 따라 설계되어 각 계층의 역할과 책임을 명확히 분리하고 코드의 유지보수성과 확장성을 높였습니다.
 
-## 2. 프로젝트 구조
+## 2. 팀원 및 역할 (Team & Roles)
+
+| 이름 | 역할(주담당) | 백엔드 담당 영역 | 역할 |
+|---|---|---|---|
+| 장봉경 | PM · 기획 | 통합 이슈 추적 | 조장 |
+| 권오현 | 백엔드 개발 | Book Entity, BookRepository, H2 콘솔 | |
+| 김연주 | 백엔드 개발 | BookService, 비즈니스 로직, @Transactional | |
+| 김경순 | 백엔드 개발 | BookController, CRUD 엔드포인트, @Valid | |
+| 강민수 | AI · Frontend 연동 | OpenAI 표지 흐름, fetch URL 변경, E2E | 발표 |
+| 류지후 | 통합 · 예외처리 | WebConfig(CORS), GlobalExceptionHandler, QA | |
+| 조승대 | 설계 문서 작성 | ERD/API 정의서, README | 서기 |
+
+## 3. 프로젝트 구조
 
 - **`controller`**: HTTP 요청을 수신하고 서비스 계층으로 처리를 위임하며, 그 결과를 HTTP 응답으로 반환합니다.
 - **`service`**: 핵심 비즈니스 로직을 구현합니다.
@@ -15,7 +27,7 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
 - **`dto`**: 데이터 전송 객체로, 각 계층 간의 데이터 교환에 사용됩니다.
 - **`exception`**: 애플리케이션 전역의 예외를 처리합니다.
 
-## 3. 주요 기능 및 심화 구현 내용
+## 4. 주요 기능 및 심화 구현 내용
 
 ### 📚 기본 도서 관리
 - **도서 CRUD**: 도서 정보 등록, 수정(부분 수정 포함), 삭제, 단일 상세 조회 지원.
@@ -52,7 +64,7 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
 - **초기 더미 데이터 세팅 (Data Seed)** ➡️ [`data.sql`](bookapp/src/main/resources/data.sql)
   - `resources/data.sql`을 통해 애플리케이션 시작 시 도서 51권과 장르 62개의 기초 데이터를 데이터베이스에 자동 주입하여 개발 및 테스트 편의성 증대.
 
-## 4. 기술 스택
+## 5. 기술 스택
 
 - **언어**: Java 17
 - **프레임워크**: Spring Boot 4.0.6
@@ -64,7 +76,7 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
     - **`lombok`**: 보일러플레이트 코드 감소
     - **`springdoc-openapi-starter-webmvc-ui`**: API 문서 자동화 (Swagger UI)
 
-## 5. 실행 방법
+## 6. 실행 방법
 
 ### 사전 준비 사항
 
@@ -94,7 +106,7 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
     ./gradlew bootRun
     ```
 
-## 6. API 명세
+## 7. API 명세
 
 API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 확인하실 수 있습니다.
 
@@ -118,13 +130,13 @@ API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 �
 ### Naver Proxy API
 - `GET /api/naver`: 네이버 API 브라우저 직접 호출 시 발생하는 CORS 방지 프록시
 
-## 7. 에러 핸들링
+## 8. 에러 핸들링
 
 - **`404 Not Found`**: 요청한 리소스를 찾을 수 없을 때 반환. (예: `BookNotFoundException`)
 - **`400 Bad Request`**: 요청 데이터 유효성 검증(`@Valid`) 실패 시 반환.
 - **`500 Internal Server Error`**: 그 외 처리되지 않은 서버 내부 오류.
 
-## 8. 데이터베이스 구조
+## 9. 데이터베이스 구조
 
 ### `users` 테이블
 | 컬럼명 | 타입 | 설명 | 제약조건 |
@@ -174,7 +186,7 @@ API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 �
 
 ---
 
-## 9. 미션 수행 기록 및 핵심 구현 내용
+## 10. 미션 수행 기록 및 핵심 구현 내용
 
 본 프로젝트는 총 7단계의 미션을 통해 단계별로 학습하며 완성된 백엔드 애플리케이션입니다.
 
@@ -233,7 +245,7 @@ API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 �
 
 ---
 
-## 10. 기술적 고민 및 최적화 성과
+## 11. 기술적 고민 및 최적화 성과
 
 ### 🚀 적용 완료된 최적화
 - **동적 JPQL 도입 (검색 로직 최적화)** ➡️ [`BookService.java`](bookapp/src/main/java/com/aivle/bookapp/service/BookService.java)
@@ -248,4 +260,3 @@ API 문서는 서버 실행 후 `http://localhost:8080/swagger-ui.html` 에서 �
 - **보안 및 브루트포스(무차별 대입) 공격 방어** ➡️ [`AuthService.java`](bookapp/src/main/java/com/aivle/bookapp/service/AuthService.java)
   - 비밀번호에 **BCrypt 단방향 해시 알고리즘(Salt 활용)** 을 적용하여 레인보우 테이블 공격을 방어합니다.
   - 이메일 OTP(6자리) 검증 로직에 **5분 만료 제한**을 부여하여 무차별 대입(Brute-force) 성공 확률을 **0.03%** 이하로 원천 차단했습니다.
-B에 저장하도록 전환하여 데이터베이스 저장 공간 압박 해소 및 응답 페이로드 크기 최적화를 진행할 예정입니다.
