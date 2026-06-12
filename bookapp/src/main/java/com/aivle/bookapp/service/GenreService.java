@@ -17,7 +17,7 @@ public class GenreService {
 
     // 장르 데이터는 변경이 거의 없으므로 캐시 적용 — 최초 1회만 DB 조회 후 메모리에서 응답
     // parentCode 값별로 별도 캐시 엔트리가 생성된다 (null / "null" / 특정코드 각각 캐싱)
-    @Cacheable(value = "genres", key = "#parentCode")
+    @Cacheable(value = "genres", key = "#parentCode == null ? 'ALL' : #parentCode")
     @Transactional(readOnly = true)
     public List<Genre> getGenres(String parentCode) {
         if (parentCode == null || parentCode.isBlank()) return genreRepository.findAll();
