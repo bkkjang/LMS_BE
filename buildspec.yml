@@ -18,3 +18,15 @@ phases:
       - echo "ECR로 푸시"
       - docker push 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:$IMAGE_TAG
       - echo "빌드 완료 - 이미지 태그 $IMAGE_TAG"
+
+artifacts:
+  base-directory: yaml_folder
+  files:
+    - 00-namespace.yaml
+    - backend-configmap.yaml
+    - backend-deployment.yaml
+    - backend-service.yaml
+    - db-configmap.yaml
+    - db-secret.yaml
+    - db-service.yaml
+    - db-statefulset.yaml
