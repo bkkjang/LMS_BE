@@ -6,18 +6,6 @@ LMS_BE는 도서 정보를 관리하고 조회할 수 있는 RESTful API를 제�
 
 이 프로젝트는 3-Tier 아키텍처(Controller-Service-Repository)를 따라 설계되어 각 계층의 역할과 책임을 명확히 분리하고 코드의 유지보수성과 확장성을 높였습니다.
 
-## 2. 팀원 및 역할 (Team & Roles)
-
-| 이름 | 역할(주담당) | 백엔드 담당 영역 | 역할 |
-|---|---|---|---|
-| 장봉경 | PM · 기획 | 통합 이슈 추적 | 조장 |
-| 권오현 | 백엔드 개발 | Book Entity, BookRepository, H2 콘솔 | |
-| 김연주 | 백엔드 개발 | BookService, 비즈니스 로직, @Transactional | |
-| 김경순 | 백엔드 개발 | BookController, CRUD 엔드포인트, @Valid | |
-| 강민수 | AI · Frontend 연동 | OpenAI 표지 흐름, fetch URL 변경, E2E | 발표 |
-| 류지후 | 통합 · 예외처리 | WebConfig(CORS), GlobalExceptionHandler, QA | |
-| 조승대 | 설계 문서 작성 | ERD/API 정의서, README | 서기 |
-
 ## 3. 프로젝트 구조
 
 - **`controller`**: HTTP 요청을 수신하고 서비스 계층으로 처리를 위임하며, 그 결과를 HTTP 응답으로 반환합니다.
