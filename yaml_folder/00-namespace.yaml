@@ -1,0 +1,6 @@
+# 모든 리소스가 들어갈 "공간" 정의
+# 백엔드, DB, ConfigMap, Secret 전부 이 namespace 안에 소속됨
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: library

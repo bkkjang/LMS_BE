@@ -1,0 +1,14 @@
+# MySQL 접속 입구 - 내부용(외부 노출 X), 백엔드만 접근
+# 이 이름(mysql)이 곧 백엔드가 쓰는 DB 호스트명
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: library
+spec:
+  clusterIP: None        # Headless (StatefulSet 권장)
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306

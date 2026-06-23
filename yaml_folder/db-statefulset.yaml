@@ -1,0 +1,47 @@
+# MySQL DB - StatefulSet (상태 있는 앱이라 Deployment 아님)
+# PVC로 데이터를 Pod 밖에 저장 → Pod 죽어도 데이터 보존
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: library
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: MYSQL_DATABASE
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+  # Pod 밖 영구 디스크 요청 (데이터 보존의 핵심)
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: ebs-sc      # EBS CSI StorageClass (동적 볼륨 프로비저닝)
+        resources:
+          requests:
+            storage: 5Gi

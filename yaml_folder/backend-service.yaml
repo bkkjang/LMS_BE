@@ -1,0 +1,14 @@
+# 백엔드 외부 접속 입구 - LoadBalancer (외부 노출)
+# apply 후 EXTERNAL-IP 뜨면 그 주소로 접속
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-svc
+  namespace: library
+spec:
+  type: LoadBalancer
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      targetPort: 8080    # 백엔드 컨테이너 포트와 일치
