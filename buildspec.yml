@@ -17,6 +17,10 @@ phases:
     commands:
       - echo "ECR로 푸시"
       - docker push 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:$IMAGE_TAG
+      - echo "매니페스트 이미지 태그 자동 치환"
+      - sed -i "s|IMAGE_PLACEHOLDER|$IMAGE_TAG|g" yaml_folder/backend-deployment.yaml
+      - echo "치환 결과 확인 (로그에서 태그 박혔는지 보기)"
+      - grep "image:" yaml_folder/backend-deployment.yaml
       - echo "빌드 완료 - 이미지 태그 $IMAGE_TAG"
 
 artifacts:
