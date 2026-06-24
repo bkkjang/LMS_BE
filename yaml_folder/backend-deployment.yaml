@@ -22,8 +22,8 @@ spec:
     spec:
       containers:
         - name: backend
-          # 태그는 buildspec.yml의 sed 치환으로 빌드 시점에 자동 주입됨 (수동 수정 불필요)
-          image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:IMAGE_PLACEHOLDER
+          # 태그는 C팀이 빌드 후 직접 받아서 교체 (하드코딩)
+          image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:9a64080
           ports:
             - containerPort: 8080
           # DB 접속정보(URL, USERNAME)는 ConfigMap에서 주입
