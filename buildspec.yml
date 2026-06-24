@@ -19,6 +19,10 @@ phases:
       - docker push 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:$IMAGE_TAG
       - echo "빌드 완료 - 이미지 태그 $IMAGE_TAG"
 
+env:
+  exported-variables:
+    - IMAGE_TAG
+
 artifacts:
   base-directory: yaml_folder
   files:

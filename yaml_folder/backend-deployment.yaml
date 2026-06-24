@@ -22,8 +22,8 @@ spec:
     spec:
       containers:
         - name: backend
-          # ECR 경로는 확정. 태그(7자리 git SHA)만 C팀이 빌드하면 받아서 교체.
-          image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:484ed41
+          # 태그는 CodePipeline Deploy 액션의 환경변수로 빌드 시점에 자동 주입됨 (수동 수정 불필요)
+          image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:$IMAGE_TAG
           ports:
             - containerPort: 8080
           # DB 접속정보(URL, USERNAME)는 ConfigMap에서 주입
