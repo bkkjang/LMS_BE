@@ -26,10 +26,14 @@ spec:
           image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/lms-be:IMAGE_PLACEHOLDER
           ports:
             - containerPort: 8080
-          # DB 접속정보(URL, USERNAME)는 ConfigMap에서 주입
+          # DB 접속정보(URL, USERNAME)는 ConfigMap에서,
+          # 앱 시크릿(메일·JWT·Naver)은 app-secret Secret에서 통째로 주입한다.
+          # app-secret 은 yaml_folder/app-secret.example.yaml 을 채워 별도로 apply 한다.
           envFrom:
             - configMapRef:
                 name: backend-config
+            - secretRef:
+                name: app-secret
           # DB 비밀번호만 Secret에서 주입 (DB와 같은 Secret 공유)
           env:
             - name: SPRING_DATASOURCE_PASSWORD
