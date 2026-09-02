@@ -1,0 +1,9 @@
+# 환경변수 파일 (실제 자격증명)
+.env
+
+# 실제 값이 채워진 k8s Secret (템플릿만 커밋)
+yaml_folder/app-secret.yaml
+
+# Gradle
+bookapp/.gradle/
+bookapp/build/
